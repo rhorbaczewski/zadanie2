@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplikacja pogodowa</title>
+</head>
+<body>
+
+<!-- Naglowek aplikacji -->
+<h1>Aplikacja pogodowa</h1>
+
+<!-- Lista wyboru kraju -->
+<label>Kraj:</label>
+<select id="country">
+    <option value="Polska">Polska</option>
+    <option value="Finlandia">Finlandia</option>
+</select>
+
+<!-- Lista wyboru miasta -->
+<label>Miasto:</label>
+<select id="city">
+    <option value="Lublin">Lublin</option>
+    <option value="Wlodawa">Wlodawa</option>
+</select>
+
+<!-- Przycisk do pobrania danych pogodowych -->
+<button onclick="getWeather()">Pobierz pogodę</button>
+
+<!-- Wyswietlenie wyniku -->
+<h2>Wynik:</h2>
+<div id="result"></div>
+
+<script>
+
+// Lista miast dla poszczegolnych krajow
+    const cities = {
+        Polska: ["Lublin", "Wlodawa"],
+        Finlandia: ["Helsinki", "Somero"]
+    };
+
+    // Pobranie elementow HTML odpowiedzialnych za wybor kraju i miasta
+    const countrySelect = document.getElementById("country");
+    const citySelect = document.getElementById("city");
+
+    // Aktualizacja listy miast po zmianie kraju
+    countrySelect.addEventListener("change", () => {
+
+        const selectedCountry = countrySelect.value;
+
+        // Usuniecie z listy poprzednich miast
+        citySelect.innerHTML = "";
+
+        // Dodanie nowych miast dla wybranego kraju
+        cities[selectedCountry].forEach(city => {
+
+            const option = document.createElement("option");
+
+            option.value = city;
+            option.text = city;
+
+            citySelect.appendChild(option);
+
+        });
+
+    });
+
+    // Funkcja pobierajaca dane pogodowe z backendu aplikacji
+    async function getWeather() {
+
+        const city = citySelect.value;
+        const country = countrySelect.value;
+
+        // Wyslanie zapytania HTTP do endpointu /weather
+        const response =
+            await fetch(`/weather?city=${city}&country=${country}`);
+
+        // Odczyt odpowiedzi w formacie JSON
+        const data = await response.json();
+
+        // Wyswietlenie danych pogodowych
+        document.getElementById("result").innerHTML = `
+            <p>Miasto: ${data.city}</p>
+            <p>Temperatura: ${data.temperature} °C</p>
+            <p>Opis: ${data.description}</p>
+            <p>Wilgotność: ${data.humidity}%</p>
+        `;
+    }
+
+</script>
+
+</body>
+</html>
