@@ -31,7 +31,13 @@ Dane cache przechowywane są pod pojedynczym tagiem buildcache. Nie są wykorzys
 
 Wykorzystano do tego przykład z dokumentacji Dockera: https://docs.docker.com/build/ci/github-actions/cache/#registry-cache
 
-Wykorzystano automatyczne tagowanie obrazu oparte o identyfikator commit git:
+Wykorzystano automatyczne tagowanie obrazu oparte o identyfikator commit git. Dodatkowo podczas publikacji tagów Git zgodnych z wzorcem v* generowany jest tag zgodny z semver:
+
+```yaml
+push:
+  tags:
+    - 'v*'
+```
 
 ```yaml
       - name: Docker metadata definitions
