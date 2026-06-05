@@ -63,7 +63,7 @@ Test wykonywany w oparciu o skaner Trivy:
 
 ```yaml
       - name: Run Trivy scan
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: zadanie2:scan
           severity: HIGH,CRITICAL
