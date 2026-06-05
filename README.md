@@ -78,4 +78,4 @@ Publikacja obrazu następuje wyłącznie po poprawnym zakończeniu etapu skanowa
     needs: scan
 ```
 
-Opracowany workflow GitHub Actions został uruchomiony i zakończył się statusem Success. Wgląd możliwy jest poprzez zakładkę Actions: https://github.com/rhorbaczewski/zadanie2/actions
+Opracowany workflow GitHub Actions został uruchomiony i zakończył się statusem Success. Wgląd możliwy jest poprzez zakładkę Actions: [https://github.com/rhorbaczewski/zadanie2/actions](https://github.com/rhorbaczewski/zadanie2/actions/workflows/gha_zad2.yml)
