@@ -52,4 +52,7 @@ push:
 ```
 Tag latest wskazuje najnowszą poprawnie zudowaną wersję obrazu, tagi sha-xxxxxxxx pozwalają określić, z którego commita Git został zbudowany dany obraz. Schemat semver wykorzystywany jest podczas publikacji oznaczonych tagów Git, zgodnie z Semantic Versioning.
 
+Schemat semver ma ustawiony wyszy priorytet niz schemat sha, preferowany jest więc tag zgodny z Semantic Versioning.
+https://github.com/marketplace/actions/docker-metadata-action#priority-attribute
+
 Inteligentnym jest zostawić na repo stare wersje obrazu, umożliwia to odtworzenie wcześniejszych wersji aplikacji i powrót do stabilnej wersji w przypadku błędów w nowszym wydaniu (lub też do ulubionej wersji aplikacji ze względów sentymentalnych).
