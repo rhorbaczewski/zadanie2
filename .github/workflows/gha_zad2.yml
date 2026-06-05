@@ -2,6 +2,9 @@ name: Zadanie2-Test
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   ci_step:
@@ -25,6 +28,8 @@ jobs:
           flavor: latest=true
           tags: |
             type=sha,priority=100,prefix=sha-,format=short
+            type=semver,priority=200,pattern={{version}}
+            
 
       - name: QEMU set-up
         uses: docker/setup-qemu-action@v3
