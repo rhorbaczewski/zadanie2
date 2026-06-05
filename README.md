@@ -77,3 +77,5 @@ Publikacja obrazu następuje wyłącznie po poprawnym zakończeniu etapu skanowa
     name: Build and push image to GHCR
     needs: scan
 ```
+
+Opracowany workflow GitHub Actions został uruchomiony i zakończył statusem Success. Wgląd dostępny jest poprzez zakładkę Actions: https://github.com/rhorbaczewski/zadanie2/actions
