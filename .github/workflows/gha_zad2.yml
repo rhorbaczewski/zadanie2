@@ -1,4 +1,4 @@
-name: Zadanie2-Test
+name: Zadanie2
 
 on:
   workflow_dispatch:
