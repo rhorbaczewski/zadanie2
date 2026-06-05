@@ -56,3 +56,24 @@ Schemat semver ma ustawiony wyszy priorytet niz schemat sha, preferowany jest wi
 https://github.com/marketplace/actions/docker-metadata-action#priority-attribute
 
 Inteligentnym jest zostawić na repo stare wersje obrazu, umożliwia to odtworzenie wcześniejszych wersji aplikacji i powrót do stabilnej wersji w przypadku błędów w nowszym wydaniu (lub też do ulubionej wersji aplikacji ze względów sentymentalnych).
+
+c. Test CVE obrazu, który zapewni, ze obraz zostanie przesłany do repo na GitHub tylko wtedy, gdy nie będzie zawierał zagrozeń sklasyfikowanych jako krytyczne lub wysokie.
+
+Test wykonywany w oparciu o skaner Trivy:
+
+```yaml
+      - name: Run Trivy scan
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: zadanie2:scan
+          severity: HIGH,CRITICAL
+          exit-code: 1
+```
+
+Publikacja obrazu następuje wyłącznie po poprawnym zakończeniu etapu skanowania CVE:
+
+```yaml
+  publish:
+    name: Build and push image to GHCR
+    needs: scan
+```
